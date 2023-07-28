@@ -38,7 +38,7 @@ resource "docker_container" "db" {
 
     volumes {
         container_path  = "/var/lib/mysql"
-        readonly        = false
+        read_only       = false
         volume_name     = docker_volume.db.name
     }
 
@@ -58,7 +58,7 @@ resource "docker_container" "app" {
     env   = [
         "${upper(var.namespace)}_DB_USER=root",
         "${upper(var.namespace)}_DB_PASSWORD=changeit",
-        "${upper(var.namespace)}_DB_HOST=${docker_container.app.name}"
+        "${upper(var.namespace)}_DB_HOST=${docker_container.app[*].name}"
     ]
 
     networks_advanced {
