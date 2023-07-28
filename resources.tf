@@ -58,7 +58,7 @@ resource "docker_container" "app" {
     env   = [
         "${upper(var.namespace)}_DB_USER=root",
         "${upper(var.namespace)}_DB_PASSWORD=changeit",
-        "${upper(var.namespace)}_DB_HOST=${docker_container.app[*].name}"
+        "${upper(var.namespace)}_DB_HOST=${var.namespace}-database"
     ]
 
     networks_advanced {
