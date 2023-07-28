@@ -104,6 +104,7 @@ resource "digitalocean_droplet" "web" {
 
     provisioner "remote-exec" {
         inline  = [
+            "export DEBIAN_FRONTEND=noninteractive",
             "apt update -y",
             "apt upgrade -y",
             "apt install nginx -y",
